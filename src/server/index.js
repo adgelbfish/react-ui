@@ -45,6 +45,7 @@ app.get('*', (req, res) => {
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${STATIC_ASSETS_CDN}/styles.css">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" />
   </head>
   <body>
     <div id="root">${markup}</div>

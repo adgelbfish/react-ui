@@ -16,7 +16,7 @@ const AdrenalineContainer = (RouteComponent, props, aProps) => {
 
 export default (aProps) => (
   <Route component={WebApp}>
-      <Route path="/" component={(props) => AdrenalineContainer(Browse, props, aProps)} />
+      <Route path="/tv" component={(props) => AdrenalineContainer(Browse, props, aProps)} />
       <Route path="/browse" component={(props) => AdrenalineContainer(Browse, props, aProps)} />
       <Route path="/watch/:channelId" component={(props) => AdrenalineContainer(Player, props, aProps)} />
       <Route path="/search/:query" component={(props) => AdrenalineContainer(SearchResults, props, aProps)} />

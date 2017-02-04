@@ -65,13 +65,16 @@ class HeaderDesktop extends Component {
     });
   }
 
+  openDonate() {
+    window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C2RM2YGUT3AEL");
+  }
 
   openRadio() {
-    window.open("http://www.eternityready.com/player");
+    window.open("http://eternityreadyradio.com/player/");
   }
 
   openTv() {
-    window.open("http://www.vertizontalmedia.com/topvideos.php");
+    window.open("http://www.eternityready.com/beta/");
   }
 
   render() {
@@ -88,10 +91,11 @@ class HeaderDesktop extends Component {
             <span className="dropdown mainMenuLink" onTouchStart={this.dropDownTouch} onMouseEnter={this.showDropDown} onMouseLeave={this.timerHide}></span>
             <div className="dropdiv" style={dropDownStyle} onMouseEnter={this.cancelHideTimer} onMouseLeave={this.timerHide}>
               <ul className="sectiondrop">
+                <li><a href="http://www.eternityready.org/devices" target="_blank">How to Watch</a></li>
                 <li><a href=""></a></li>
-                <li><a href="#">All Channels</a></li>
+                <li><a href="http://www.eternityready.org/production" target="_blank">Originals</a></li>
                 <li><a href=""></a></li>
-                <li><a href="#">TV Line Up</a></li>
+                <li><a href="http://www.eternityready.org/lineup.pdf" target="_blank">TV Line Up</a></li>
               </ul>
               <ul className="sectiondrop">
                 <li><a href="#">Faith &amp; Ministry</a></li>
@@ -110,7 +114,8 @@ class HeaderDesktop extends Component {
             </div>
             <Search device="desktop"/>
             <span className="mainMenuLink" onClick={this.openRadio}>Radio</span>
-            <span className="mainMenuLink" onClick={this.openTv}>Music Videos</span>
+            <span className="mainMenuLink" onClick={this.openTv}>Old Version</span>
+            <span className="mainMenuLink" onClick={this.openDonate}>Donate</span>
           </span>
         </div>
     );
