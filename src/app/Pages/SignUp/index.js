@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { container } from '../../../Adrenaline'
-import Signup from '../../components/Signup'
+import Signup from '../../components/SignUp'
 
 class SignupPage extends Component {
 
