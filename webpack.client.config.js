@@ -17,6 +17,9 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
+  devServer: {
+    stats: { chunks: false }
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

@@ -12,6 +12,14 @@ import AppContainer from '../app/AppContainer';
 import schema from './schema';
 import connection from './dbConnection';
 import routes from '../app/routes.jsx';
+import passport from 'passport';
+import bodyParser from 'body-parser';
+import jwt from 'express-jwt';
+import signup from './passport/local-signup';
+import login from './passport/local-login';
+
+passport.use('local-signup', signup);
+passport.use('local-login', login);
 
 var STATIC_ASSETS_CDN = process.env.STATIC_ASSETS_CDN || '';
 var WEBPACK_ASSETS = process.env.WEBPACK_ASSETS || '';
@@ -19,11 +27,53 @@ global.__currentRequestUserAgent__ = '';
 const app = express();
 app.use(express.static('www'));
 app.use(useragent.express());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+
+app.post('/signup', (req, res)=> {
+  passport.authenticate('local-signup', {session: false}, (err, user, info) => {
+    if (err) {
+      res.status(500).json({
+        message: err
+      })
+    } else if (!user) {
+      res.status(400).json(info);
+    } else {
+      res.json(user);
+    }
+  })(req, res)
+})
+
+app.post('/login', (req, res)=> {
+  passport.authenticate('local-login', {session: false}, (err, user, info) => {
+    if (err) {
+      res.status(500).json({
+        message: err
+      })
+    } else if (!user) {
+      res.status(400).json(info);
+    } else {
+      res.json(user);
+    }
+  })(req, res)
+})
+
+app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/']}));
+app.use(function(err, req, res, next) {
+  if(401 == err.status) {
+      res.redirect('/');
+  }
+});
+
+
+
 app.use('/graphql', graphqlHTTP({
   schema,
   context: { connection },
   graphiql: true
 }));
+
 app.get('*', (req, res) => {
   global.__currentRequestUserAgent__ = req.useragent;
   match({ routes: routes({}), location: req.url }, (error, redirectLocation, renderProps) => {
@@ -64,5 +114,10 @@ app.get('*', (req, res) => {
     }
   })
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) next();
+  else res.send(401);
+}
 
 export default app;

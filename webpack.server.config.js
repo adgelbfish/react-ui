@@ -24,6 +24,9 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx', '.json', '.es6', '.babel', '.node' ],
   },
+  devServer: {
+    stats: { chunks: false }
+  },
   node: {
     fs: 'empty',
     net: 'empty',

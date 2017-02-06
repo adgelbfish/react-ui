@@ -39,7 +39,8 @@ let dbConnection = {
         })
       }
       return mongoConnection.collection('channels').find({ $query: {$or: orQuery} , $orderby: { _id : -1 } }).toArray();
-    }
+    },
+    noop: () => { return ' ' }
   },
   Channel: {
     categories: (root, { sortBy, sortOrder, limit }, { connection }) => {
@@ -51,8 +52,11 @@ let dbConnection = {
     channels: (root, { sortBy, sortOrder, limit }, { connection }) => {
       return mongoConnection.collection('channels').find({$query: {categoryIds: ObjectId(root._id)}, $orderby: { _id : -1 }}).toArray();
     }
-
   },
+
+  Auth: () => {
+    return mongoConnection.collection('users')
+  }
 };
 
 export default dbConnection;
