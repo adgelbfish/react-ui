@@ -1,5 +1,5 @@
 import { Strategy } from 'passport-local'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt-nodejs'
 import dbConnection from '../dbConnection'
 import jwt from 'jsonwebtoken'
 
