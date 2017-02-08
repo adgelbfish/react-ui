@@ -1,11 +1,10 @@
-// var path = require('path');
 var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 let extractCSS = new ExtractTextPlugin('www/styles.css');
-var __STATIC_ASSETS_CDN__ = process.env.STATIC_ASSETS_CDN || ''; //
+var __STATIC_ASSETS_CDN__ = process.env.STATIC_ASSETS_CDN || ''; 
 
 module.exports = {
   devtool: 'source-map',

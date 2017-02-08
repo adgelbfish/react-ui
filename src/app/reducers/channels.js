@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
 import { REQUEST_CHANNELS, RECEIVE_CHANNELS } from '../actions'
-import striptags  from 'striptags'
 
 function channel(state = {}, action) {
   switch (action.type) {
     case RECEIVE_CHANNELS:
       return {
         ...state,
-        description: striptags(state.description).replace(/&nbsp;/g, '')
+        description: state.description.replace(/&nbsp;/g, '')
       }
     default:
       return state
