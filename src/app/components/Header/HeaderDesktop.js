@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from '../Search'
+import User from '../User'
 // import logo from '../../commonResources/logo.png'
 
 class HeaderDesktop extends Component {
@@ -112,6 +113,7 @@ class HeaderDesktop extends Component {
                 <li><a href="#">All Channnels</a></li>
               </ul>
             </div>
+            <User />
             <Search device="desktop"/>
             <span className="mainMenuLink" onClick={this.openRadio}>Radio</span>
             <span className="mainMenuLink" onClick={this.openTv}>Old Version</span>

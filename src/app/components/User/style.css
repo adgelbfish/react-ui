@@ -1,0 +1,55 @@
+.user-control {
+  float: right;
+  padding-right: 40px;
+  position: relative;
+  padding-top: 20px;
+}
+
+@media (max-width: 799px) {
+    .user-control {
+      float: right;
+      padding-right: 5px;
+      position: relative;
+      padding-top: 0;
+      margin-top: 5px;
+      background: rgba(0, 38, 60, 0.8);
+    }
+}
+
+.user {
+  cursor: pointer;
+  color: #d60000;
+  font-size: 22px;
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  right: 10px;
+  z-index: 3;
+  text-decoration: none;
+}
+
+.user-drop {
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  top: 65px;
+}
+
+.user-drop-section {
+  display: block;
+  line-height: 27px;
+  text-align: center;
+}
+
+.user-logout {
+  cursor: pointer;
+}
+
+@media (max-width: 799px) {
+    .user {
+      padding-top: 8px;
+    }
+    .user-drop {
+      background: rgba(0, 38, 60, 0.8);
+    }
+}

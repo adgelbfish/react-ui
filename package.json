@@ -11,6 +11,7 @@
     "client:build": "NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.client.config",
     "server:build": "NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.server.config",
     "server:watch": "NODE_ENV=development ./node_modules/.bin/webpack --watch --config webpack.server.config",
+    "build": "npm run client:build & npm run server:build",
     "start": "concurrently 'NODE_ENV=development npm run client:watch' 'NODE_ENV=development npm run server:watch'"
   },
   "author": "Hasnat <hasnat.ullah@gmail.com>",
@@ -54,6 +55,7 @@
     "rx": "^4.1.0",
     "sqlite3": "^3.1.8",
     "striptags": "^3.0.1",
+    "validator": "^6.2.1",
     "wait.for": "^0.6.6",
     "whatwg-fetch": "^0.9.0"
   },

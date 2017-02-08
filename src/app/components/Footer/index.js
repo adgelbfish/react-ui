@@ -33,7 +33,7 @@ class Footer extends Component {
                     <div className="sepparator"> / </div>
                 </div>
 		<div>
-			<br /><a href="https://www.facebook.com/eternityready/" target="_blank"><img src="http://www.eternityready.com/images/facebook_32.png" width="32" height="32" border="0" /></a>
+			<br /><a href="https://www.facebook.com/eternityready/" target="_blank"><img src="http://www.eternityready.com/images/facebook_32.png" width="32" height="32"/></a>
 		</div>	
                 <p>© 2017 Copyright Eternity Ready<br /></p>
             </footer>

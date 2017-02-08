@@ -21,11 +21,15 @@ module.exports = {
   resolve: {
     alias: {
       graphql: path.resolve('./node_modules/graphql'),
+      networkLayer: path.resolve('./src/Adrenaline/network/defaultNetworkLayer')
     },
     extensions: ['', '.js', '.jsx', '.json', '.es6', '.babel', '.node' ],
   },
   devServer: {
-    stats: { chunks: false }
+    stats: { 
+      chunks: false,
+      children: false
+    }
   },
   node: {
     fs: 'empty',

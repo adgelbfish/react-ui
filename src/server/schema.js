@@ -23,10 +23,19 @@ var schema = Schema(`
     channels: [Channel]
   }
 
+  type User {
+    _id: String
+    username: String
+    password: String
+    email: String
+    watchedChannel: [Channel]
+  }
+
   type Query {
     homepageCategories(sortBy: String, sortOrder: Boolean, limit: Int): [Category]
     channel(channelId: String): Channel
     channelSearch(query: String): [Channel]
+    user(username: String): User
     noop: String
   }
 `, dbConnection);

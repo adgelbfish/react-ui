@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 var __STATIC_ASSETS_CDN__ = '';
 if (process.env.NODE_ENV == 'development') {
   __STATIC_ASSETS_CDN__ = 'http://localhost:8080';
@@ -16,9 +17,15 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    alias: {
+      networkLayer: path.resolve('./src/Adrenaline/network/defaultNetworkLayer')
+    }
   },
   devServer: {
-    stats: { chunks: false }
+    stats: { 
+      chunks: false,
+      children: false
+     }
   },
   plugins: [
     new webpack.DefinePlugin({

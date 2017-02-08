@@ -1,7 +1,8 @@
 /* @flow */
 global.__SERVER__ = true;
-require('es6-promise').polyfill();
-require('fetch-everywhere');
+import { polyfill } from 'es6-promise';
+import 'fetch-everywhere';
+import path from 'path'
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
@@ -59,20 +60,49 @@ app.post('/login', (req, res)=> {
   })(req, res)
 })
 
-app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/']}));
-app.use(function(err, req, res, next) {
-  if(401 == err.status) {
-      res.redirect('/');
-  }
-});
-
-
-
 app.use('/graphql', graphqlHTTP({
   schema,
   context: { connection },
   graphiql: true
 }));
+
+app.get('/', (req, res) => {
+  res.send(`
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+       var token = localStorage.getItem('id_token');
+       if (token) {
+         var xhr = new XMLHttpRequest();
+          xhr.open('get', '/browse');
+          xhr.setRequestHeader('Content-type', 'text/html');
+          xhr.setRequestHeader('Authorization', 'bearer ' + token);
+          xhr.responseType = 'text';
+          xhr.addEventListener('load', function(){
+            if (xhr.status === 200) {
+              history.pushState(null, null, '/browse');
+              document.open();
+              document.write(xhr.responseText);
+              document.close();
+            }
+          });
+          xhr.send();
+       }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+  `);
+})
+
+app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/graphql']}));
+app.use(function(err, req, res, next) {
+  if(401 == err.status) {
+      res.redirect('/');
+  }
+});
 
 app.get('*', (req, res) => {
   global.__currentRequestUserAgent__ = req.useragent;
@@ -108,16 +138,12 @@ app.get('*', (req, res) => {
       // TODO: remove the double render (somehow traverse react components without render or cache route queries on build?)
       // renderToString seems faster than renderToStaticMarkup
       ReactDOM.renderToString(<AppContainer dataCallBack={showToServer} renderProps={renderProps} />);
+      //showToServer();
 
     } else {
       res.status(404).send('Not found')
     }
   })
 });
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) next();
-  else res.send(401);
-}
 
 export default app;

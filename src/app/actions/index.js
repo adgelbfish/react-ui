@@ -88,7 +88,8 @@ const receiveLogin = (user) => ({
   type: LOGIN_SUCCESS,
   isFetching: false,
   isAuthenticated: true,
-  id_token: user.id_token
+  id_token: user.id_token,
+  username: user.username
 })
 
 const loginError = (message) => ({
@@ -116,6 +117,7 @@ export const loginUser = (creds) => {
           return Promise.reject(user)
         } else {
           localStorage.setItem('id_token', user.id_token)
+          localStorage.setItem('username', user.username)
           dispatch(receiveLogin(user))
           browserHistory.push(`/browse`)
         }
@@ -139,6 +141,7 @@ export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout())
   localStorage.removeItem('id_token')
   dispatch(receiveLogout())
+  location.href = '/'
 }
 
 const requestSignup = (creds) => ({
@@ -152,7 +155,8 @@ const receiveSignup = (user) => ({
   type: SIGNUP_SUCCESS,
   isFetching: false,
   isAuthenticated: true,
-  id_token: user.id_token
+  id_token: user.id_token,
+  username: user.username
 })
 
 const signupError = (message) => ({
@@ -180,6 +184,7 @@ export const signupUser = (creds) => {
           return Promise.reject(user)
         } else {
           localStorage.setItem('id_token', user.id_token)
+          localStorage.setItem('username', user.username)
           dispatch(receiveLogin(user))
           browserHistory.push(`/browse`)
         }

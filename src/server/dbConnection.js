@@ -40,8 +40,12 @@ let dbConnection = {
       }
       return mongoConnection.collection('channels').find({ $query: {$or: orQuery} , $orderby: { _id : -1 } }).toArray();
     },
+    user: (root, { username }, { connection }) => {
+      return mongoConnection.collection('users').findOne({ username: username });
+    },
     noop: () => { return ' ' }
   },
+
   Channel: {
     categories: (root, { sortBy, sortOrder, limit }, { connection }) => {
       return mongoConnection.collection('categories').find({}).toArray();
@@ -49,6 +53,12 @@ let dbConnection = {
   },
 
   Category: {
+    channels: (root, { sortBy, sortOrder, limit }, { connection }) => {
+      return mongoConnection.collection('channels').find({$query: {categoryIds: ObjectId(root._id)}, $orderby: { _id : -1 }}).toArray();
+    }
+  },
+
+  User: {
     channels: (root, { sortBy, sortOrder, limit }, { connection }) => {
       return mongoConnection.collection('channels').find({$query: {categoryIds: ObjectId(root._id)}, $orderby: { _id : -1 }}).toArray();
     }

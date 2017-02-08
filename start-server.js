@@ -8,6 +8,7 @@ var appPort = process.env.PORT || 3030;
 var app = require('./src/server').default;
 
 app.listen(appPort, function () {
+  console.log('current mode is ' + process.env.NODE_ENV);
   console.log('server is running at ' + appPort);
 });
 

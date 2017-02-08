@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from '../Search'
+import User from '../User'
 
 class HeaderMobile extends Component {
 
@@ -41,6 +42,7 @@ class HeaderMobile extends Component {
               <span></span>
             </div>
             <img alt="Enternity Ready Logo" src={require("../../commonResources/logo.png")} />
+            <User />
             <Search />
           </div>
             <nav id="main-menu" style={mobileMenuStyle}>
