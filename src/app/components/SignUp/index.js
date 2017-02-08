@@ -60,8 +60,8 @@ class Signup extends Component {
     const varibles = {
       username: this.state.email.value 
     }
-    networkLayer.performQuery('/graphql', query, varibles).then((user) => {
-      if (user) {
+    networkLayer.performQuery('/graphql', query, varibles).then((data) => {
+      if (data.user !== null) {
         this.setState({
           email: {
             ...this.state.email,

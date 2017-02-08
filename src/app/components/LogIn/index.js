@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import { loginUser } from '../../actions'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
 import validator from 'validator'
 import './style.css'
 
@@ -107,6 +109,7 @@ class Login extends Component {
             <p className="login-error">{errorMessage}</p>
           }
         </form>
+        <p class="signup-link">Do not have an account? <Link to={`/signup`}>Sign up now.</Link></p>
       </div>
     )
   }
