@@ -109,7 +109,7 @@ class Login extends Component {
             <p className="login-error">{errorMessage}</p>
           }
         </form>
-        <p class="signup-link">Do not have an account? <Link to={`/signup`}>Sign up now.</Link></p>
+        <p className="signup-link">Do not have an account? <Link to={`/signup`}>Sign up now.</Link></p>
       </div>
     )
   }

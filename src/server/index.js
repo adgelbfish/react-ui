@@ -26,7 +26,7 @@ var STATIC_ASSETS_CDN = process.env.STATIC_ASSETS_CDN || '';
 var WEBPACK_ASSETS = process.env.WEBPACK_ASSETS || '';
 global.__currentRequestUserAgent__ = '';
 const app = express();
-app.use(express.static('www'));
+//app.use(express.static(path.join(__dirname, 'www')));
 app.use(useragent.express());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -141,7 +141,7 @@ app.get('*', (req, res) => {
       //showToServer();
 
     } else {
-      res.status(404).send('Not found')
+      //res.status(404).send('Not found')
     }
   })
 });

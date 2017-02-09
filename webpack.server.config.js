@@ -33,7 +33,9 @@ module.exports = {
   node: {
     fs: 'empty',
     net: 'empty',
-    tls: 'empty'
+    tls: 'empty',
+    __dirname: false,
+    __filename: false
   },
   plugins: [
     new webpack.DefinePlugin({

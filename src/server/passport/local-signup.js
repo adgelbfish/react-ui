@@ -14,8 +14,8 @@ const signup = new Strategy({
     password: password.trim()
   }
 
-  dbConnection.Auth().findOne({ username: user.username }, (err, user) => {
-    if (user) {
+  dbConnection.Auth().findOne({ username: user.username }, (err, existingUser) => {
+    if (existingUser) {
       return done(null, false, { message: 'This email is already registered. Please choose a different email address.' })
     } else {
         bcrypt.genSalt(10, (err, salt) => {
