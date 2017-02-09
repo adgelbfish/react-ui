@@ -66,7 +66,7 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/graphql']}));
+app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/graphql', '/']}));
 app.use(function(err, req, res, next) {
   if(401 == err.status) {
       res.redirect('/');
