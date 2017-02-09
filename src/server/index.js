@@ -66,37 +66,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-app.get('/', (req, res) => {
-  res.send(`
-<!DOCTYPE html>
-<html>
-  <head>
-    <script>
-       var token = localStorage.getItem('id_token');
-       if (token) {
-         var xhr = new XMLHttpRequest();
-          xhr.open('get', '/browse');
-          xhr.setRequestHeader('Content-type', 'text/html');
-          xhr.setRequestHeader('Authorization', 'bearer ' + token);
-          xhr.responseType = 'text';
-          xhr.addEventListener('load', function(){
-            if (xhr.status === 200) {
-              history.pushState(null, null, '/browse');
-              document.open();
-              document.write(xhr.responseText);
-              document.close();
-            }
-          });
-          xhr.send();
-       }
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
-  `);
-})
-
 app.use(jwt({ secret: 'just another secret'}).unless({path: ['/login', '/signup', '/graphql']}));
 app.use(function(err, req, res, next) {
   if(401 == err.status) {
