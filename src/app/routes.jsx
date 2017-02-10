@@ -6,6 +6,7 @@ import Browse from './Pages/Browse';
 import Player from './Pages/Player';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
+import Admin from './Pages/Admin';
 import SearchResults from './Pages/SearchResults';
 import { Adrenaline } from '../Adrenaline';
 
@@ -27,7 +28,8 @@ export default (aProps) => (
     </Route>
     <Route component={AuthApp}>
       <Route path="/login" component={(props) => AdrenalineContainer(LogIn, props, aProps)} />
-      <Route path="/signup" component={(props) => AdrenalineContainer(SignUp, props, aProps)}/>
+      <Route path="/signup" component={(props) => AdrenalineContainer(SignUp, props, aProps)} />
+      <Route path="/admin" component={(props) => AdrenalineContainer(Admin, props, aProps)} />
     </Route>
   </Route>
 );

@@ -43,7 +43,19 @@ let dbConnection = {
     user: (root, { username }, { connection }) => {
       return mongoConnection.collection('users').findOne({ username: username });
     },
+    allUsers: (root, { sortBy, sortOrder, limit}, { connection }) => {
+      return mongoConnection.collection('users').find({$query: {}, $orderby: { _id : 1 }}).toArray();
+    },
     noop: () => { return ' ' }
+  },
+
+  Mutation: {
+    deleteUser: (root, { username }, { connection }) => {
+      return mongoConnection.collection('users').remove({username: username}, {justOne: true})
+    },
+    addUser: (root, { username }, { connection }) => {
+      return mongoConnection.collection('users').insert({username: username})
+    }
   },
 
   Channel: {

@@ -50,7 +50,7 @@ class Signup extends Component {
   }
 
   checkEmail = () => {
-    const query = `
+    /*const query = `
       query ($username: String){
         user(username: $username) {
           _id
@@ -69,7 +69,8 @@ class Signup extends Component {
           } 
         })
       }
-    })
+    })*/
+    this.props.checkEmail(this.state.email)
   }
 
   handlePassword = (e) => {
