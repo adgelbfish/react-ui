@@ -16,8 +16,8 @@ class Player extends Component {
   createMarkup() {
     var embedCode = this.props.channel && this.props.channel.embedCode ? this.props.channel.embedCode : '';
     return {__html: embedCode}
-
   }
+  
   goBack() {
     return browserHistory.goBack();
   }

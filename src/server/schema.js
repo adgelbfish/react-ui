@@ -36,7 +36,13 @@ var schema = Schema(`
     channel(channelId: String): Channel
     channelSearch(query: String): [Channel]
     user(username: String): User
+    allUsers(sortBy: String, sortOrder: Boolean, limit: Int): [User]
     noop: String
+  }
+
+  type Mutation {
+    deleteUser(username: String): Boolean
+    addUser(username: String): Boolean
   }
 `, dbConnection);
 
